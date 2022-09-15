@@ -15,9 +15,9 @@
 <section>
     <div class="container">
         <div class="screen">
-            <div class="screen-1">0</div>
-            <div class="screen-2">0</div>
-            <div class="screen-temp"></div>
+            <div class="screen-1"  contenteditable="false">0</div>
+            <div class="screen-2" contenteditable="false">0</div>
+            <div class="screen-temp" contenteditable="false"></div>
         </div>
         <div class="buttons">
             <div class="btn clear">C</div>
@@ -112,14 +112,25 @@
             } else if(finalAction === "/"){
                 if(parseFloat(y) === 0){
                     throw new Error("Ошибка")
+                    
                 }
             result = parseFloat(result) / parseFloat(y);
             } else if(finalAction === "%"){
             result = parseFloat(result) % parseFloat(y);
             }
 
-            result = result.toFixed(8);
+            if ( result % 1 !== 0) {
+                result = result.toFixed(length(result));}
             console.log(result);
+        }
+
+        function length(n){
+             if (n.toString().includes('.')) {
+                 let value = n.toString().split('.').pop().length;
+                 if (value <= 8) return value ;
+                 else return 8;
+                } 
+                 else return 0;
         }
 
         equal.addEventListener("click", (e) => {
