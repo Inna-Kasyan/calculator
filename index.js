@@ -15,6 +15,15 @@ let fraction = false;
 
 values.forEach(value => {
     value.addEventListener("click", (e) => {
+   if(y === result){
+
+    screen1.innerText = "";
+    screen2.innerText = "0";
+    x = "";
+    y = "";
+    result = "";
+    screenTemp.innerText = "";
+   }
         if (e.target.innerText === "." && !fraction) {
             fraction = true;
         } else if (e.target.innerText === "." && fraction) {
@@ -74,13 +83,11 @@ function initCalculation() {
         result = parseFloat(result) % parseFloat(y);
     }
 
-    if (result % 1 !== 0) {
-        result = result.toFixed(length(result));
-    }
+
     console.log(result);
 }
 
-function length(n) {
+function f(n) {
     if (n.toString().includes('.')) {
         let value = n.toString().split('.').pop().length;
         if (value <= 8) return value;
@@ -94,10 +101,15 @@ equal.addEventListener("click", (e) => {
     fraction = false;
     initCalculation();
     updateScreen();
+    if (result % 1 !== 0) {
+        result = result.toFixed(8).replace(/(0*)$/gm, '');
+    }
     screen2.innerText = result;
     screenTemp.innerText = "";
     y = result;
     x = "";
+
+
 })
 
 clear.addEventListener("click", (e) => {
