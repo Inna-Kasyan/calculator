@@ -15,15 +15,15 @@ let fraction = false;
 
 values.forEach(value => {
     value.addEventListener("click", (e) => {
-   if(y === result){
+        if (y === result) {
 
-    screen1.innerText = "";
-    screen2.innerText = "0";
-    x = "";
-    y = "";
-    result = "";
-    screenTemp.innerText = "";
-   }
+            screen1.innerText = "";
+            screen2.innerText = "0";
+            x = "";
+            y = "";
+            result = "";
+            screenTemp.innerText = "";
+        }
         if (e.target.innerText === "." && !fraction) {
             fraction = true;
         } else if (e.target.innerText === "." && fraction) {
@@ -38,7 +38,6 @@ operations.forEach((operation) => {
         if (!y) return;
         fraction = false;
         const sign = e.target.innerText;
-        console.log(sign)
         if (x && y && finalAction) {
             initCalculation();
         } else {
@@ -46,7 +45,7 @@ operations.forEach((operation) => {
         }
         updateScreen(sign);
         finalAction = sign;
-        console.log(result);
+      
 
 
     })
@@ -63,15 +62,14 @@ function updateScreen(name = "") {
 }
 
 function initCalculation() {
-    console.log(result);
+   
     if (finalAction === "X") {
         result = parseFloat(result) * parseFloat(y);
     } else if (finalAction === "+") {
 
         result = parseFloat(result) + parseFloat(y);
     } else if (finalAction === "-") {
-        console.log(result);
-        console.log(parseFloat(y));
+      
         result = parseFloat(result) - parseFloat(y);
     } else if (finalAction === "/") {
         if (parseFloat(y) === 0) {
@@ -84,7 +82,6 @@ function initCalculation() {
     }
 
 
-    console.log(result);
 }
 
 function f(n) {
