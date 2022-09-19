@@ -1,3 +1,4 @@
+
 const screen1 = document.querySelector('.screen-1')
 const screen2 = document.querySelector('.screen-2')
 const screenTemp = document.querySelector('.screen-temp')
@@ -15,6 +16,10 @@ let fraction = false;
 
 values.forEach(value => {
     value.addEventListener("click", (e) => {
+if(!fraction && e.target.innerText === "0" && y.startsWith("0")){
+    y = 0;
+} else{
+
         if (y === result) {
 
             screen1.innerText = "";
@@ -29,8 +34,12 @@ values.forEach(value => {
         } else if (e.target.innerText === "." && fraction) {
             return;
         }
+
         y += e.target.innerText;
-        screen2.innerText = y;
+  
+  screen2.innerText = y;
+    }
+
     })
 })
 operations.forEach((operation) => {
@@ -60,6 +69,7 @@ function updateScreen(name = "") {
     y = "";
     screenTemp.innerText = result;
 }
+
 
 function initCalculation() {
    
@@ -116,12 +126,14 @@ clear.addEventListener("click", (e) => {
     y = "";
     result = "";
     screenTemp.innerText = "";
+    fraction = false;
 })
 
 del.addEventListener("click", (e) => {
     screen2.innerText = "";
     y = "";
 })
+
 
 
 
